@@ -82,3 +82,59 @@ docker exec -it samba adduser -s /sbin/nologin -h /home/samba -H -D carol
 docker exec -it samba smbpasswd -a carol
 ```
 
+## Mac Autodiscovery
+
+To enable zeroconf autodiscovery on OSX, you'll need to run the Avahi
+daemon. This repository includes the Dockerfile for building an
+Alpine Linux-based Avahi daemon image.
+
+### Building
+
+```
+docker build \
+  --rm=true \
+  --tag=avahi \
+  .
+```
+
+### Configuring Avahi Services
+
+To announce Samba on your network, setup a file called `smb.services`
+(below) in a new folder `services/`. You can announce more services
+here, such as SSH or SFTP.
+
+```
+<?xml version="1.0" standalone='no'?>
+<!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+<service-group>
+ <name replace-wildcards="yes">%h</name>
+ <service>
+   <type>_smb._tcp</type>
+   <port>445</port>
+ </service>
+ <service>
+   <type>_device-info._tcp</type>
+   <port>0</port>
+   <txt-record>model=RackMac</txt-record>
+ </service>
+</service-group>
+```
+
+
+### Running
+
+```
+docker run -d \
+  -v $PWD/services:/etc/avahi/services \
+  --net=host \
+  --name=avahi \
+  --restart=always \
+  avahi
+```
+
+It's possible to not use `--net=host`, and instead specify the port mapping
+`-p 5353:5353/udp` and optionally giving your Docker container a hostname
+with `--hostname=myhostname` but I haven't gotten it to work correctly.
+
+
+
