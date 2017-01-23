@@ -12,7 +12,8 @@ that [Apple may start prefering Samba over AFP](http://appleinsider.com/articles
 
 ## Create Samba Configuration
 
-Create the `smb.conf` configuration file. The following is an example:
+Create the `smb.conf` configuration file. The following is an example,
+in this case it's acting as a domain master browser:
 
 ```
 [global]
@@ -23,6 +24,12 @@ Create the `smb.conf` configuration file. The following is an example:
   printing = bsd
   printcap name = /dev/null
   wins support = yes
+  dns proxy = yes
+  name resolve order = wins hosts bcast
+  domain master = yes
+  preferred master = yes
+  local master = yes
+  os level = 255
 
 [Dozer]
   path = /dozer
@@ -39,6 +46,12 @@ Create the `smb.conf` configuration file. The following is an example:
   write list = carol
   guest ok = yes
 ```
+
+You can disable netbios-based broadcast autodiscovery by adding
+`disable netbios = yes` to the above config (under global) or
+by modifying `entrypoint.sh` to only start smbd (not nmbd) and
+rebuild the image. Avahi (below) can be configured for
+autodiscovery on OSX and Linux systems.
 
 ## Running
 

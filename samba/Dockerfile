@@ -13,6 +13,8 @@ RUN apk add --update \
 
 COPY entrypoint.sh /entrypoint.sh
 
+VOLUME /var/log/samba
+
 EXPOSE 137/udp \
        138/udp \
        139/tcp \
