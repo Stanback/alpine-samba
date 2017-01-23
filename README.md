@@ -74,11 +74,12 @@ docker exec -it samba adduser -s /sbin/nologin -h /home/samba -H -D carol
 docker exec -it samba smbpasswd -a carol
 ```
 
-## Mac Autodiscovery
+## Mac ZeroConf Auto-discovery
 
-To enable zeroconf autodiscovery on OSX, you'll need to run the Avahi
-daemon. This repository includes the Dockerfile for building an
-Alpine Linux-based Avahi daemon image.
+Samba comes with WINS/NetBios resolution which should work in OSX. If
+you have issues with this or are unable to use it for whatever reason
+or prefer to use Avahi, this repository includes support for building
+an Avahi Docker image.
 
 ### Configuring Avahi Services
 
