@@ -16,27 +16,28 @@ Create the `smb.conf` configuration file. The following is an example:
 
 ```
 [global]
-workgroup = WORKGROUP
-server string = %h server (Samba, Alpine)
-security = user
-encrypt passwords = yes
-printing = bsd
-printcap name = /dev/null
+  workgroup = WORKGROUP
+  server string = %h server (Samba, Apline)
+  security = user
+  encrypt passwords = yes
+  printing = bsd
+  printcap name = /dev/null
+  wins support = yes
 
 [Dozer]
-path = /dozer
-comment = ZFS
-browseable = yes
-writable = yes
-valid users = carol
+  path = /dozer
+  comment = ZFS
+  browseable = yes
+  writable = yes
+  valid users = carol
 
 [Shared]
-path = /share
-comment = Shared Folder
-browseable = yes
-read only = yes
-write list = carol
-guest ok = yes
+  path = /share
+  comment = Shared Folder
+  browseable = yes
+  read only = yes
+  write list = carol
+  guest ok = yes
 ```
 
 ## Running
