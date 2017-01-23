@@ -12,6 +12,8 @@ that [Apple may start prefering Samba over AFP](http://appleinsider.com/articles
 
 ## Building
 
+From the `samba/` directory, run:
+
 ```
 docker build \
   --rm=true \
@@ -90,6 +92,8 @@ Alpine Linux-based Avahi daemon image.
 
 ### Building
 
+From the `avahi/` directory, run:
+
 ```
 docker build \
   --rm=true \
@@ -119,7 +123,6 @@ here, such as SSH or SFTP.
  </service>
 </service-group>
 ```
-
 
 ### Running
 
