@@ -21,8 +21,7 @@ in this case it's acting as a domain master browser:
   server string = %h server (Samba, Apline)
   security = user
   encrypt passwords = yes
-  printing = bsd
-  printcap name = /dev/null
+  load printers = no
   wins support = yes
   dns proxy = yes
   name resolve order = wins hosts bcast
