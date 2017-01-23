@@ -10,17 +10,6 @@ I was previously running Netatalk for Apple AFP support, however
 I've found that Samba works reasonably well for me and it appears
 that [Apple may start prefering Samba over AFP](http://appleinsider.com/articles/13/06/11/apple-shifts-from-afp-file-sharing-to-smb2-in-os-x-109-mavericks).
 
-## Building
-
-From the `samba/` directory, run:
-
-```
-docker build \
-  --rm=true \
-  --tag=samba \
-  .
-```
-
 ## Create Samba Configuration
 
 Create the `smb.conf` configuration file. The following is an example:
@@ -66,7 +55,7 @@ docker run -dt \
   -p 445:445 \
   --name samba \
   --restart=always \
-  samba
+  stanback/alpine-samba
 ```
 
 If you would like more debugging output, append `--debuglevel=5` to
@@ -89,17 +78,6 @@ docker exec -it samba smbpasswd -a carol
 To enable zeroconf autodiscovery on OSX, you'll need to run the Avahi
 daemon. This repository includes the Dockerfile for building an
 Alpine Linux-based Avahi daemon image.
-
-### Building
-
-From the `avahi/` directory, run:
-
-```
-docker build \
-  --rm=true \
-  --tag=avahi \
-  .
-```
 
 ### Configuring Avahi Services
 
@@ -132,7 +110,7 @@ docker run -d \
   --net=host \
   --name=avahi \
   --restart=always \
-  avahi
+  stanback/alpine-avahi
 ```
 
 It's possible to not use `--net=host`, and instead specify the port mapping
