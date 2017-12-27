@@ -29,7 +29,7 @@ Create the `smb.conf` configuration file. The following is an example:
   server role = standalone
   server services = -dns, -nbt
   smb ports = 445
-  name resolve order = hosts
+  ;name resolve order = hosts
   ;log level = 3
 
 [Dozer]
