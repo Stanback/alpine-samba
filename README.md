@@ -1,3 +1,11 @@
+> **Archived — October 16, 2026**
+>
+> This historical Samba/Avahi container configuration is no longer maintained. The setup and open issues have not been validated against current releases.
+>
+> Source and history remain available for reference; no further updates or support are planned.
+
+---
+
 # Samba 4 + Alpine Linux Docker Image
 
 This repository contains a basic Dockerfile for installing Samba 4
